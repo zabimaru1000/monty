@@ -1,32 +1,43 @@
 #include "monty.h"
 
-void find_op(char *token_cmd, unsigned int line_number)
+void find_op(stack_t **stack, unsigned int line_number, char *token)
 {
 	int i = 0;
 	instruction_t op[] = {
-		{"push", pushop},
+		{"pall", pallop},
 		{NULL, NULL}
-		};
+	};
 
 	while (op[i].opcode != NULL)
 	{
-		if (strcmp(token_cmd, op[i].opcode) != 0)
+		if (strcmp(token, op[i].opcode) != 0)
 		{
-			printf("L<%d>: unknown instruction <%s>\n", line_number, token_cmd);
+			printf("L<%d>: unknown instruction <%s>\n", line_number, token);
 			exit(EXIT_FAILURE);
 		}
 
-		else if (strcmp(op[i].opcode, "push") == 0)
-			pushop(token_cmd);
 		else
-			printf("2\n");
+			op[i].f(stack, line_number);
+
 		i++;
 	}
+
+	/*printf("%d -> %s\n", line_number, token);*/
 }
 
-void pushop(char *token_cmd)
+void pallop(stack_t **stack, unsigned int line_number __attribute__((unused)))
 {
-	char *integer;
-	integer = strtok(NULL, DELIM);
-	printf("%s -> %s\n", token_cmd, integer);
+	stack_t *new = NULL;
+	new = *stack;
+
+	if ((*stack) == NULL)
+	{
+		return;
+	}
+	printf("test\n");
+	while(new != NULL)
+	{
+		printf("%d\n", new->n);
+		new = new->next;
+	}
 }

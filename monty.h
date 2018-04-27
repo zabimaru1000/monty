@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <string.h>
+#include <ctype.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -40,12 +41,13 @@ typedef struct stack_s
 typedef struct instruction_s
 {
         char *opcode;
-        void (*f)();
+        void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void find_op(char *token_cmd, unsigned int line_number);
-void pushop(char *token_cmd);
-void pallop(/*stack_t **stack,*/ unsigned int line_number);
+void parse(char *line, unsigned int line_number);
+void find_op(stack_t **stack, unsigned int line_number, char *token);
+void pushop(stack_t **stack, unsigned int line_number, int num);
+void pallop(stack_t **stack, unsigned int line_number);
 void pintop(/*stack_t **stack,*/ unsigned int line_number);
 void popop(stack_t **stack, unsigned int line_number);
 void swapop(stack_t **stack, unsigned int line_number);
