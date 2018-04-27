@@ -3,7 +3,7 @@
 
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
-#define DELIM "\n\t\a\r"
+#define DELIM " \n\t\a\r"
 #define MAX_CHAR 50
 #define MAX_LINES 40
 
@@ -40,9 +40,11 @@ typedef struct stack_s
 typedef struct instruction_s
 {
         char *opcode;
-        void (*f)(unsigned int line_number);
+        void (*f)();
 } instruction_t;
 
+void find_op(char *token_cmd, unsigned int line_number);
+void pushtest(char *line);
 void pushop();
 void pallop(/*stack_t **stack,*/ unsigned int line_number);
 void pintop(/*stack_t **stack,*/ unsigned int line_number);
