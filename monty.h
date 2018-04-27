@@ -44,8 +44,7 @@ typedef struct instruction_s
 } instruction_t;
 
 void find_op(char *token_cmd, unsigned int line_number);
-void pushtest(char *line);
-void pushop();
+void pushop(char *token_cmd);
 void pallop(/*stack_t **stack,*/ unsigned int line_number);
 void pintop(/*stack_t **stack,*/ unsigned int line_number);
 void popop(stack_t **stack, unsigned int line_number);

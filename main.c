@@ -26,8 +26,6 @@ int main(int ac, char **av)
 	{
 		token_cmd = strtok(line, DELIM);
 
-		printf("%s", line);
-
 		/*if (token_cmd == NULL)
 		  continue;*/
 

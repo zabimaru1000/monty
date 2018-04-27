@@ -17,20 +17,16 @@ void find_op(char *token_cmd, unsigned int line_number)
 		}
 
 		else if (strcmp(op[i].opcode, "push") == 0)
-			printf("1\n");
+			pushop(token_cmd);
 		else
 			printf("2\n");
 		i++;
 	}
 }
 
-void pushop()
+void pushop(char *token_cmd)
 {
-}
-
-void pushtest(char *line)
-{
-	char *token;
-	token = strtok(line, DELIM);
-	printf("%s", token);
+	char *integer;
+	integer = strtok(NULL, DELIM);
+	printf("%s -> %s\n", token_cmd, integer);
 }
