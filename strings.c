@@ -12,11 +12,6 @@ void parse(char *line, unsigned int line_number)
 	if (strcmp(token, "push") == 0)
 	{
 		num = atoi(strtok(NULL, DELIM));
-		/*if (isdigit(num) != 0)
-		{
-			printf("L%d: usage: push integer\n", line_number);
-			exit(EXIT_FAILURE);
-			}*/
 		pushop(&stack, line_number, num);
 	}
 
@@ -50,5 +45,5 @@ void pushop(stack_t **stack, unsigned int line_number __attribute__((unused)), i
 	new->prev = NULL;
 	*stack = new;
 
-	printf("[%d] -> %d\n", line_number, new->n);
+	/*printf("[%d] -> %d\n", line_number, new->n);*/
 }
