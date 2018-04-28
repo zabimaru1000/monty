@@ -3,6 +3,7 @@
 
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
+#define DELIM "\n\t\a\r "
 #define MAX_CHAR 50
 #define MAX_LINES 40
 
@@ -11,6 +12,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <string.h>
+#include <ctype.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -23,9 +25,9 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -38,13 +40,15 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void pushop(stack_t **stack, unsigned int line_number);
+void parse(char *line, stack_t **stack, unsigned int line_number);
+void find_op(stack_t **stack, unsigned int line_number, char *token);
+void pushop(stack_t **stack, unsigned int line_number, int num);
 void pallop(stack_t **stack, unsigned int line_number);
-void pintop(stack_t **stack, unsigned int line_number);
+void pintop(/*stack_t **stack,*/ unsigned int line_number);
 void popop(stack_t **stack, unsigned int line_number);
 void swapop(stack_t **stack, unsigned int line_number);
 void addop(stack_t **stack, unsigned int line_number);
